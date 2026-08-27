@@ -1,9 +1,9 @@
-import Binary_Integer_Coder_Primitives
-import Binary_Parser_Primitives_Test_Support
-import Either_Primitives
+import Binary_Integer_Coder
+import Binary_Parser_Test_Support
+import Either
 import Testing
 
-@testable import Binary_Coder_Primitives
+@testable import Binary_Coder
 
 @Suite struct `Binary.Coder.Protocol Tests` {
     @Suite struct Unit {}

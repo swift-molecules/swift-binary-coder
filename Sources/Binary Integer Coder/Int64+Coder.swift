@@ -1,5 +1,5 @@
-public import Binary_Coder_Primitives
-import Input_Primitives
+public import Binary_Coder
+import Input
 
 extension Int64 {
 

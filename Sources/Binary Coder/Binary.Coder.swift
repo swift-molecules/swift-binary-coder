@@ -1,7 +1,7 @@
 public import Buffer_Linear_Primitive
-public import Buffer_Linear_Primitives
+public import Buffer_Linear
 public import Ownership_Shared_Primitive
-public import Witness_Primitives
+public import Witness
 
 extension Binary {
 

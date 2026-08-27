@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-binary-coder-primitives",
+    name: "swift-binary-coder",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -13,88 +13,88 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Binary Coder Primitives",
-            targets: ["Binary Coder Primitives"]
+            name: "Binary Coder",
+            targets: ["Binary Coder"]
         ),
         .library(
-            name: "Binary Integer Coder Primitives",
-            targets: ["Binary Integer Coder Primitives"]
+            name: "Binary Integer Coder",
+            targets: ["Binary Integer Coder"]
         ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-binary-parser-primitives.git",
+            url: "https://github.com/swift-molecules/swift-binary-parser.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-input-primitives.git",
+            url: "https://github.com/swift-molecules/swift-input.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-witness-primitives.git",
+            url: "https://github.com/swift-molecules/swift-witness.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-coder-primitives.git",
+            url: "https://github.com/swift-molecules/swift-coder.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-either-primitives.git",
+            url: "https://github.com/swift-molecules/swift-either.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-ownership-shared-primitives.git",
+            url: "https://github.com/swift-molecules/swift-ownership-shared.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git",
+            url: "https://github.com/swift-molecules/swift-buffer-linear.git",
             branch: "main"
         ),
     ],
     targets: [
         .target(
-            name: "Binary Coder Primitives",
+            name: "Binary Coder",
             dependencies: [
                 .product(
-                    name: "Binary Input Primitives",
-                    package: "swift-binary-parser-primitives"
+                    name: "Binary Input",
+                    package: "swift-binary-parser"
                 ),
                 .product(
-                    name: "Binary Machine Primitives",
-                    package: "swift-binary-parser-primitives"
+                    name: "Binary Machine",
+                    package: "swift-binary-parser"
                 ),
-                .product(name: "Witness Primitives", package: "swift-witness-primitives"),
-                .product(name: "Coder Primitives", package: "swift-coder-primitives"),
-                .product(name: "Either Primitives", package: "swift-either-primitives"),
+                .product(name: "Witness", package: "swift-witness"),
+                .product(name: "Coder", package: "swift-coder"),
+                .product(name: "Either", package: "swift-either"),
                 .product(
                     name: "Ownership Shared Primitive",
-                    package: "swift-ownership-shared-primitives"
+                    package: "swift-ownership-shared"
                 ),
                 .product(
                     name: "Buffer Linear Primitive",
-                    package: "swift-buffer-linear-primitives"
+                    package: "swift-buffer-linear"
                 ),
                 .product(
-                    name: "Buffer Linear Primitives",
-                    package: "swift-buffer-linear-primitives"
+                    name: "Buffer Linear",
+                    package: "swift-buffer-linear"
                 ),
             ]
         ),
         .target(
-            name: "Binary Integer Coder Primitives",
+            name: "Binary Integer Coder",
             dependencies: [
-                "Binary Coder Primitives",
-                .product(name: "Input Primitives", package: "swift-input-primitives"),
+                "Binary Coder",
+                .product(name: "Input", package: "swift-input"),
             ]
         ),
         .testTarget(
-            name: "Binary Coder Primitives Tests",
+            name: "Binary Coder Tests",
             dependencies: [
-                "Binary Coder Primitives",
-                "Binary Integer Coder Primitives",
+                "Binary Coder",
+                "Binary Integer Coder",
                 .product(
-                    name: "Binary Parser Primitives Test Support",
-                    package: "swift-binary-parser-primitives"
+                    name: "Binary Parser Test Support",
+                    package: "swift-binary-parser"
                 ),
             ]
         ),

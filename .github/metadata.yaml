@@ -2,7 +2,7 @@
 # Bootstrap stub — populate description / topics during release-readiness.
 description: "Bidirectional binary coding witness pairing a streaming decode cursor with an appendable encode buffer for Swift."
 topics:
-  - primitives
+  - molecules
   - binary
   - coder
 homepage: "https://swift-institute.org"

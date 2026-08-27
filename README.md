@@ -1,7 +1,7 @@
-# Binary Coder Primitives
+# Binary Coder
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
-[![CI](https://github.com/swift-primitives/swift-binary-coder-primitives/actions/workflows/ci.yml/badge.svg)](https://github.com/swift-primitives/swift-binary-coder-primitives/actions/workflows/ci.yml)
+[![CI](https://github.com/swift-molecules/swift-binary-coder/actions/workflows/ci.yml/badge.svg)](https://github.com/swift-molecules/swift-binary-coder/actions/workflows/ci.yml)
 
 A witness for bidirectional binary coding that gives each direction its natural type — decoding streams from a `Byte.Input` cursor, encoding appends into a mutable `[Byte]` buffer. One `Binary.Coder<Output>` value holds both directions, so a format's round-trip symmetry lives in a single value instead of two parallel implementations that drift apart.
 
@@ -22,8 +22,8 @@ Parser-printer designs that force one `Input` type onto both directions make enc
 ## Quick Start
 
 ```swift
-import Binary_Coder_Primitives
-import Binary_Integer_Coder_Primitives
+import Binary_Coder
+import Binary_Integer_Coder
 
 // Ready-made fixed-width coders — endianness is explicit, never ambient.
 let coder = UInt32.coder(endianness: .big)
@@ -40,7 +40,7 @@ let word = try UInt16.coder(endianness: .big).decodePrefix(&input)  // 0x1234
 Custom formats lift an existing machine parser into a coder, adding only the encode half:
 
 ```swift
-import Binary_Coder_Primitives
+import Binary_Coder
 
 let tag = Binary.Coder.machine(Binary.Machine.u8Parser()) { value, output in
     output.append(Byte(value))
@@ -59,7 +59,7 @@ Add the dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-binary-coder-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-molecules/swift-binary-coder.git", branch: "main")
 ]
 ```
 
@@ -69,12 +69,12 @@ Add a product to your target:
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Binary Integer Coder Primitives", package: "swift-binary-coder-primitives")
+        .product(name: "Binary Integer Coder", package: "swift-binary-coder")
     ]
 )
 ```
 
-Use the `Binary Coder Primitives` product instead when you only build custom coders and do not need the integer surface. The package is pre-1.0 — depend on `branch: "main"` until `0.1.0` is tagged. Requires Swift 6.3 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26 (or the corresponding Linux / Windows toolchain).
+Use the `Binary Coder` product instead when you only build custom coders and do not need the integer surface. The package is pre-1.0 — depend on `branch: "main"` until `0.1.0` is tagged. Requires Swift 6.3 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26 (or the corresponding Linux / Windows toolchain).
 
 ---
 
@@ -82,8 +82,8 @@ Use the `Binary Coder Primitives` product instead when you only build custom cod
 
 | Product | Contents | When to import |
 |---------|----------|----------------|
-| `Binary Coder Primitives` | `Binary.Coder<Output>`, the execution helpers (`decodeWhole`, `decodePrefix`, `encodeToArray`, `encodeAppending`), the machine-parser lift, and the generic coder-seam conformance; re-exports the byte-input and machine-parser vocabulary | Building custom coders for your own formats |
-| `Binary Integer Coder Primitives` | `coder(endianness:)` on the eight fixed-width integer types | Ready-made integer coders; pulls in the core product |
+| `Binary Coder` | `Binary.Coder<Output>`, the execution helpers (`decodeWhole`, `decodePrefix`, `encodeToArray`, `encodeAppending`), the machine-parser lift, and the generic coder-seam conformance; re-exports the byte-input and machine-parser vocabulary | Building custom coders for your own formats |
+| `Binary Integer Coder` | `coder(endianness:)` on the eight fixed-width integer types | Ready-made integer coders; pulls in the core product |
 
 Decoding throws `Binary.Machine.Fault` throughout — `decodeWhole` additionally rejects unconsumed trailing bytes. `Binary.Coder` also conforms to the ecosystem's generic coder seam (`parse(_:)` / `serialize(_:into:)`), so it composes with code written against `Coder.Protocol`.
 
@@ -91,9 +91,9 @@ Decoding throws `Binary.Machine.Fault` throughout — `decodeWhole` additionally
 
 ## Related Packages
 
-- [`swift-binary-parser-primitives`](https://github.com/swift-primitives/swift-binary-parser-primitives) — the `Byte.Input` cursor and `Binary.Machine` parsers the decode half runs on.
-- [`swift-coder-primitives`](https://github.com/swift-primitives/swift-coder-primitives) — the generic `Coder.Protocol` seam this coder conforms to.
-- [`swift-witness-primitives`](https://github.com/swift-primitives/swift-witness-primitives) — the witness vocabulary `Binary.Coder` is built on.
+- [`swift-binary-parser`](https://github.com/swift-molecules/swift-binary-parser) — the `Byte.Input` cursor and `Binary.Machine` parsers the decode half runs on.
+- [`swift-coder`](https://github.com/swift-molecules/swift-coder) — the generic `Coder.Protocol` seam this coder conforms to.
+- [`swift-witness`](https://github.com/swift-molecules/swift-witness) — the witness vocabulary `Binary.Coder` is built on.
 
 ---
 

@@ -1,5 +1,5 @@
-public import Coder_Primitives
-public import Either_Primitives
+public import Coder
+public import Either
 
 extension Binary.Coder: Coder.`Protocol` {
 

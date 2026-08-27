@@ -1,8 +1,8 @@
-import Binary_Integer_Coder_Primitives
-import Binary_Parser_Primitives_Test_Support
+import Binary_Integer_Coder
+import Binary_Parser_Test_Support
 import Testing
 
-@testable import Binary_Coder_Primitives
+@testable import Binary_Coder
 
 @Suite
 struct `Integer Coder Tests` {
