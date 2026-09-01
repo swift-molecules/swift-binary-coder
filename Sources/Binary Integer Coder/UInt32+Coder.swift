@@ -1,5 +1,4 @@
 public import Binary_Coder
-import Input
 
 extension UInt32 {
 

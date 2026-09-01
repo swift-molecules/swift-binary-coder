@@ -27,10 +27,6 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-input.git",
-            branch: "main"
-        ),
-        .package(
             url: "https://github.com/swift-molecules/swift-witness.git",
             branch: "main"
         ),
@@ -84,7 +80,6 @@ let package = Package(
             name: "Binary Integer Coder",
             dependencies: [
                 "Binary Coder",
-                .product(name: "Input", package: "swift-input"),
             ]
         ),
         .testTarget(
