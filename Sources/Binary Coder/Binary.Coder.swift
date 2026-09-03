@@ -7,13 +7,13 @@ extension Binary {
 
     public struct Coder<Output>: Witness.`Protocol` {
 
-        public var decode: (inout Byte.Input) throws(Binary.Machine.Fault) -> Output
+        public var decode: (inout ArraySlice<Byte>) throws(Binary.Machine.Fault) -> Output
 
         public var encode: (Output, inout [Byte]) -> Void
 
         @inlinable
         public init(
-            decode: @escaping (inout Byte.Input) throws(Binary.Machine.Fault) -> Output,
+            decode: @escaping (inout ArraySlice<Byte>) throws(Binary.Machine.Fault) -> Output,
             encode: @escaping (Output, inout [Byte]) -> Void
         ) {
             self.decode = decode
@@ -26,7 +26,7 @@ extension Binary.Coder {
 
     @inlinable
     public func decodeWhole(_ bytes: [Byte]) throws(Binary.Machine.Fault) -> Output {
-        var input = Byte.Input(bytes)
+        var input = bytes[...]
         let value = try decode(&input)
         guard input.isEmpty else {
             throw .expectedEnd(remaining: input.count)
@@ -35,7 +35,7 @@ extension Binary.Coder {
     }
 
     @inlinable
-    public func decodePrefix(_ input: inout Byte.Input) throws(Binary.Machine.Fault) -> Output {
+    public func decodePrefix(_ input: inout ArraySlice<Byte>) throws(Binary.Machine.Fault) -> Output {
         try decode(&input)
     }
 

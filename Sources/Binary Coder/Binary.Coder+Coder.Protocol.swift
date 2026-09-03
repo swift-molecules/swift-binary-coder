@@ -3,7 +3,7 @@ public import Either
 
 extension Binary.Coder: Coder.`Protocol` {
 
-    public typealias Input = Byte.Input
+    public typealias Input = ArraySlice<Byte>
 
     public typealias Buffer = [Byte]
 
@@ -12,7 +12,7 @@ extension Binary.Coder: Coder.`Protocol` {
     public typealias Body = Never
 
     @inlinable
-    public func parse(_ input: inout Byte.Input) throws(Failure) -> Output {
+    public func parse(_ input: inout ArraySlice<Byte>) throws(Failure) -> Output {
         do throws(Binary.Machine.Fault) {
             return try self.decode(&input)
         } catch {

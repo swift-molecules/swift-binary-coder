@@ -19,7 +19,7 @@ extension `Binary.Coder.Protocol Tests`.Unit {
             Binary.Machine.u8Parser(),
             encode: { value, output in output.append(Byte(value)) }
         )
-        var input = Byte.Input([0x42])
+        var input = ArraySlice<Byte>([0x42])
 
         let value = try coder.parse(&input)
 
@@ -49,7 +49,7 @@ extension `Binary.Coder.Protocol Tests`.Unit {
         var buffer: [Byte] = []
         try coder.serialize(0xAB, into: &buffer)
 
-        var input = Byte.Input(buffer)
+        var input = buffer[...]
         let reparsed = try coder.parse(&input)
 
         #expect(reparsed == 0xAB)
@@ -64,7 +64,7 @@ extension `Binary.Coder.Protocol Tests`.`Edge Case` {
             Binary.Machine.u8Parser(),
             encode: { value, output in output.append(Byte(value)) }
         )
-        var input = Byte.Input([])
+        var input = ArraySlice<Byte>([])
 
         do throws(Either<Binary.Machine.Fault, Never>) {
             _ = try coder.parse(&input)
