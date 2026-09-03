@@ -22,6 +22,8 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-byte.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-cursor.git", branch: "main"),
         .package(
             url: "https://github.com/swift-molecules/swift-binary-parser.git",
             branch: "main"
